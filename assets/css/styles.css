@@ -41,6 +41,7 @@
   --gradient: linear-gradient(180deg, #032E15 0%, #016630 100%);
   --gradient-inverse: linear-gradient(180deg, #016630 0%, #032E15 100%);
   --gradient-2: linear-gradient(180deg, rgba(3, 46, 21, 0.6) 0%, rgba(1, 102, 48, 0.6) 100%);
+  --gradient-3: linear-gradient(270deg, #032E15 0%, #008236 51.92%, #00C950 100%);
   --fw-light: 300;
   --fw-normal: 400;
   --fw-medium: 500;
@@ -1426,6 +1427,7 @@ p {
 
 .header.scrolled {
     background-color: rgb(255 255 255 / 90%);
+    box-shadow: var(--box-shadow);
 }
 
 .header .container {
@@ -1579,11 +1581,11 @@ p {
 
 /* --- Hero Section --- */
 .hero-section {
-    background: url('/assets/images/hero-image.webp') center/cover no-repeat;
+    background: url('../images/hero-image.webp') center/cover no-repeat;
     height: 80vh;
     display: flex;
     align-items: center;
-    color: var(--color-white);
+    color: var(--white);
     position: relative;
     padding-left: 10%; /* Matches image layout */
 }
@@ -1700,6 +1702,10 @@ p {
     margin-top: 1rem;
 }
 
+.thumbnail-gallery-wrapper .nav-button {
+    display: none;
+}
+
 .thumb {
     width: 132px;
     height: 130px;
@@ -1780,7 +1786,7 @@ p {
 .most-popular-block {
     font-size: 1.25rem;
     font-weight: var(--fw-bold);
-    background: var(--gradient);
+    background: var(--gradient-3);
     color: var(--white);
     text-align: center;
     border: none;
@@ -1982,14 +1988,19 @@ ul.subscription-bullets li {
 }
 
 .filter-item .filter-item-body {
-    display: none;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
     color: var(--gray-600);
     font-weight: var(--fw-light);
-    padding-top: 1.5rem;
+    padding-top: 0;
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, padding-top 0.3s ease-in-out;
 }
 
 .filter-item.open .filter-item-body {
-    display: block;
+    max-height: 500px;
+    opacity: 1;
+    padding-top: 1.5rem;
 }
 
 .collection-image-column {
@@ -2056,11 +2067,12 @@ ul.subscription-bullets li {
 /* --- Why Choose Us (Table) Section --- */
 .why-choose-us {
     text-align: center;
-    padding: 4rem 1rem;
+    padding: 0 1rem 4rem;
 }
 
 .why-choose-us h2 {
     margin-bottom: 2rem;
+    color: var(--primary-500);
 }
 
 .table-wrapper {
@@ -2122,7 +2134,7 @@ ul.subscription-bullets li {
 }
 
 .footer-links p, .footer-newsletter p {
-    font-weight: 600;
+    font-weight: var(--fw-semibold);
     margin-bottom: 1rem;
 }
 
@@ -2156,7 +2168,7 @@ ul.subscription-bullets li {
 .footer-newsletter form {
     display: flex;
     gap: 1rem;
-    max-width: 350px;
+    width: 100%;
 }
 
 .footer-newsletter input.input-subscribe {
@@ -2182,6 +2194,12 @@ ul.subscription-bullets li {
     opacity: 0.9;
 }
 
+@media (max-width: 1200px) {
+    .config-box .config-body .fragrance-collection {
+        flex-wrap: wrap;
+    }
+}
+
 @media (max-width: 768px) {
     .header.scrolled .menu-toggle {
         color: var(--dark);
@@ -2194,8 +2212,14 @@ ul.subscription-bullets li {
     .hero-title {
         font-size: 2.5rem;
     }
+    .main-product-image {
+        max-width: 400px;
+    }
     .thumbnail-grid {
         grid-template-columns: repeat(3, 1fr);
+    }
+    .config-box .config-body .fragrance-collection {
+        flex-wrap: wrap;
     }
     .stats-grid {
         flex-wrap: wrap;
@@ -2216,4 +2240,80 @@ ul.subscription-bullets li {
     .footer-newsletter form {
         max-width: 100%;
     }
+}
+
+@media (max-width: 480px) {
+    .footer-grid {
+        row-gap: 1rem;
+    }
+    .footer-logo {
+        text-align: center;
+    }
+    .thumbnail-gallery-wrapper {
+    display: flex;
+    align-items: center;
+    max-width: 400px; /* Limit the width of the visible area */
+    /* margin: 20px auto; */
+    position: relative;
+}
+
+.thumbnail-grid {
+    display: flex;
+    overflow-x: scroll; /* Enable horizontal scrolling */
+    scroll-behavior: smooth; /* Smooth scrolling animation */
+    padding: 10px 0;
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    gap: 10px; /* Spacing between thumbnails */
+}
+
+/* Hide scrollbar for Webkit browsers (Chrome, Safari) */
+.thumbnail-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.thumb {
+    flex-shrink: 0; /* Important: Prevents thumbnails from shrinking */
+    width: 80px; /* Fixed width for each thumbnail */
+    height: 80px; /* Fixed height for each thumbnail */
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.thumb.active {
+    border-color: #007bff; /* Highlight active thumbnail */
+}
+
+.thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Navigation Button Styling */
+.nav-button {
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    line-height: 1; /* Center the symbol */
+}
+
+.prev-btn {
+    left: 0;
+}
+
+.next-btn {
+    right: 0;
+}
 }

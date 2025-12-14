@@ -53,13 +53,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     filterItems.forEach(item => {
         item.addEventListener('click', () => {
-            // Toggle an 'open' class for visual changes (e.g., rotating the '+' icon)
-            item.classList.toggle('open');
+            const isCurrentlyOpen = item.classList.contains('open');
             
-            // show/hide a filter submenu here:
-            const submenu = item.nextElementSibling;
-            if (submenu && submenu.classList.contains('filter-item-body')) {
-                submenu.style.display = item.classList.contains('open') ? 'block' : 'none';
+            // Close all filter items first
+            filterItems.forEach(otherItem => {
+                otherItem.classList.remove('open');
+                const otherToggleSpan = otherItem.querySelector('.filter-item-header span');
+                if (otherToggleSpan) {
+                    otherToggleSpan.textContent = '+';
+                }
+            });
+            
+            // If the clicked item wasn't open, open it now
+            if (!isCurrentlyOpen) {
+                item.classList.add('open');
+                const toggleSpan = item.querySelector('.filter-item-header span');
+                if (toggleSpan) {
+                    toggleSpan.textContent = '−';
+                }
             }
         });
     });
@@ -73,14 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault(); 
             
             const buttonText = button.textContent;
-            console.log(`${buttonText} clicked! Starting purchase/subscription flow...`);
-
-            // You could add simple visual feedback here, like changing the button text temporarily:
-            // const originalText = button.textContent;
-            // button.textContent = 'Processing...';
-            // setTimeout(() => {
-            //     button.textContent = originalText;
-            // }, 1500);
         });
     });
     
@@ -146,10 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const radioButtons = document.querySelectorAll('.btn-radio-subsc');
     const headers = document.querySelectorAll('.config-header');
 
-    /**
-     * Toggles the 'active' class based on the checked radio button.
-     * @param {HTMLElement} activeRadio - The radio button that was checked.
-     */
     function toggleSubscriptionBox(activeRadio) {
         // 1. Deselect all boxes
         configBoxes.forEach(box => {
@@ -201,4 +200,55 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleSubscriptionBox(radioButtons[0]);
         }
     }
+});
+
+
+// For horizontal scroll gallery
+document.addEventListener('DOMContentLoaded', () => {
+    const grid = document.getElementById('thumbnail-grid');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    
+    // Determine how much to scroll on each click. 
+    // Using the width of a single thumb + gap is a good default.
+    const scrollAmount = 90; // (80px thumb width + 10px gap)
+
+    // --- Function to handle scrolling ---
+    function scrollGallery(direction) {
+        if (direction === 'next') {
+            // Scroll the grid container to the right
+            grid.scrollLeft += scrollAmount;
+        } else if (direction === 'prev') {
+            // Scroll the grid container to the left
+            grid.scrollLeft -= scrollAmount;
+        }
+    }
+
+    // --- Attach event listeners to buttons ---
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            scrollGallery('prev');
+        });
+    }
+
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            scrollGallery('next');
+        });
+    }
+
+    // --- Optional: Handle thumbnail selection (if needed) ---
+    const thumbs = document.querySelectorAll('.thumb');
+
+    thumbs.forEach(thumb => {
+        thumb.addEventListener('click', function() {
+            // Remove 'active' class from all thumbs
+            thumbs.forEach(t => t.classList.remove('active'));
+            // Add 'active' class to the clicked thumb
+            this.classList.add('active');
+            
+            // NOTE: If this gallery controls a main, larger image, 
+            // you would add the logic here to update the main image source.
+        });
+    });
 });
