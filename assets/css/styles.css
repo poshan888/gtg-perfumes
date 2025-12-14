@@ -1446,6 +1446,7 @@ p {
 .nav ul {
     list-style: none;
     display: flex;
+    padding: 0;
 }
 
 .nav ul .nav-menu {
@@ -1578,7 +1579,7 @@ p {
 
 /* --- Hero Section --- */
 .hero-section {
-    background: url('/assets/images/hero-image.jpg') center/cover no-repeat;
+    background: url('/assets/images/hero-image.webp') center/cover no-repeat;
     height: 80vh;
     display: flex;
     align-items: center;
