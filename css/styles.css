@@ -1581,7 +1581,7 @@ p {
 
 /* --- Hero Section --- */
 .hero-section {
-    background: url('../images/hero-image.webp') center/cover no-repeat;
+    background: url('../assets/images/hero-image.webp') center/cover no-repeat;
     height: 80vh;
     display: flex;
     align-items: center;
