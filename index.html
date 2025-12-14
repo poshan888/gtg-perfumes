@@ -52,27 +52,54 @@
         </div>
     </header>
 
-    <main>
-        <section class="hero-section">
-            <div class="hero-content">
-                <span class="awarded-tag"><img src="./assets/images/icons/Medal.svg" alt="certified" /> Awarded the best
-                    perfume in the world</span>
-                <h1 class="hero-title">Live your best life.</h1>
-                <div class="stats-grid">
-                    <div class="stat">
-                        <span class="number">10x</span>
-                        <span class="label">Product Worth</span>
-                    </div>
-                    <div class="stat">
-                        <span class="number">9</span>
-                        <span class="label">Ingredients</span>
-                    </div>
-                    <div class="stat">
-                        <span class="number">20K+</span>
-                        <span class="label">Happy Customers</span>
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="search-overlay">
+        <div class="search-container">
+            <div class="search-box-wrapper">
+                <input type="text" class="search-input" id="search-input"
+                    placeholder="Search for fragrances, products..." autocomplete="off" aria-label="Search products" />
+                <div class="search-overlay" id="search-overlay">
+                    <div class="search-container">
+                        <div class="search-box-wrapper"> <input type="text" class="search-input" id="search-input"
+                                placeholder="Search for fragrances, products..." autocomplete="off"
+                                aria-label="Search products" /> <button class="search-close-btn" id="search-close"
+                                aria-label="Close search"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg> </button> </div>
+                        <div class="search-suggestions">
+                            <p class="search-hint">Type to search for products...</p>
+                        </div>
                     </div>
                 </div>
-                <button class="btn btn-primary btn-hero">Shop Now</button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="awarded-tag"><img src="./assets/images/icons/Medal.svg" alt="certified" /> Awarded the best
+                        perfume in the world</span>
+                    <h1 class="hero-title">Live your best life.</h1>
+                    <div class="stats-grid">
+                        <div class="stat">
+                            <span class="number">10x</span>
+                            <span class="label">Product Worth</span>
+                        </div>
+                        <div class="stat">
+                            <span class="number">9</span>
+                            <span class="label">Ingredients</span>
+                        </div>
+                        <div class="stat">
+                            <span class="number">20K+</span>
+                            <span class="label">Happy Customers</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-hero">Shop Now</button>
+                </div>
             </div>
         </section>
 
@@ -155,7 +182,7 @@
                             <p class="most-popular-block">Most Popular</p>
                             <div class="config-header">
                                 <div class="config-header-title">
-                                    <input type="radio" name="subscription-radio" id="name-subscription"
+                                    <input type="radio" checked name="subscription-radio" id="name-subscription"
                                         class="btn-radio-subsc" />
                                     <label for="name-subscription">Single Subscription</label>
                                 </div>
@@ -168,32 +195,33 @@
                                         <span class="badge badge-best-seller">
                                             BEST-SELLER
                                         </span>
-                                        <div class="d-flex align-items-center gap-2">
-                                            <input type="radio" name="fragrances-single-subscription"
+                                        <div class="d-flex align-items-start gap-2">
+                                            <input type="radio" name="fragrances-single-subscription" checked
                                                 id="fragrance-single-subc-lavendar" class="form-input" />
-                                            <label for="fragrance-single-subc-lavendar">Original
+                                            <label for="fragrance-single-subc-lavendar"
+                                                class="d-flex flex-column">Original
+                                                <img src="./assets/images/perfume-pink.png" alt="Lavendar Perfume">
                                             </label>
                                         </div>
-                                        <img src="./assets/images/perfume-pink.png" alt="Lavendar Perfume">
                                     </div>
                                     <div class="fragrance-original">
-                                        <div class="d-flex align-items-center gap-2">
+                                        <div class="d-flex align-items-start gap-2">
                                             <input type="radio" name="fragrances-single-subscription"
                                                 id="fragrance-single-subc-lilly" class="form-input" />
-                                            <label for="fragrance-single-subc-lilly">
+                                            <label for="fragrance-single-subc-lilly" class="d-flex flex-column">
                                                 Lilly
+                                                <img src="./assets/images/perfume-violet.png" alt="Lilly Perfume" />
                                             </label>
                                         </div>
-                                        <img src="./assets/images/perfume-violet.png" alt="Lilly Perfume" />
                                     </div>
                                     <div class="fragrance-original">
-                                        <div class="d-flex align-items-center gap-2">
+                                        <div class="d-flex align-items-start gap-2">
                                             <input type="radio" name="fragrances-single-subscription"
                                                 id="fragrance-single-subc-rose" class="form-input" />
-                                            <label for="fragrance-single-subc-rose">Rose
+                                            <label for="fragrance-single-subc-rose" class="d-flex flex-column">Rose
+                                                <img src="./assets/images/perfume-red.png" alt="Rose Perfume">
                                             </label>
                                         </div>
-                                        <img src="./assets/images/perfume-red.png" alt="Rose Perfume">
                                     </div>
                                 </div>
                                 <h6 class="config-body-title">What's included</h6>
@@ -215,7 +243,8 @@
                                     <li><img src="./assets/images/icons/SealCheck.svg" alt="bullet icon"> 1 bottle
                                         shipped monthly</li>
                                     <li><img src="./assets/images/icons/SealCheck.svg" alt="bullet icon">
-                                        <strong>Free</strong>Sampler for original, lily and rose fragrances</li>
+                                        <strong>Free</strong>Sampler for original, lily and rose fragrances
+                                    </li>
                                     <li><img src="./assets/images/icons/SealCheck.svg" alt="bullet icon"> <strong>50%
                                             OFF Shipping</strong></li>
                                     <li><img src="./assets/images/icons/SealCheck.svg" alt="bullet icon"> Pause or
@@ -242,32 +271,34 @@
                                         <span class="badge badge-best-seller">
                                             BEST-SELLER
                                         </span>
-                                        <div class="d-flex align-items-center gap-2">
-                                            <input type="radio" name="fragrances-double-subsc-first"
+                                        <div class="d-flex align-items-start gap-2">
+                                            <input type="radio" name="fragrances-double-subsc-first" checked
                                                 id="fragrance-double-subsc-first-lavendar" class="form-input" />
-                                            <label for="fragrance-double-subsc-first-lavendar">Original
+                                            <label for="fragrance-double-subsc-first-lavendar"
+                                                class="d-flex flex-column">Original
+                                                <img src="./assets/images/perfume-pink.png" alt="Lavendar Perfume" />
                                             </label>
                                         </div>
-                                        <img src="./assets/images/perfume-pink.png" alt="Lavendar Perfume">
                                     </div>
                                     <div class="fragrance-original">
-                                        <div class="d-flex align-items-center gap-2">
+                                        <div class="d-flex align-items-start gap-2">
                                             <input type="radio" name="fragrances-double-subsc-first"
                                                 id="fragrance-double-subsc-first-lilly" class="form-input" />
-                                            <label for="fragrance-double-subsc-first-lilly">
+                                            <label for="fragrance-double-subsc-first-lilly" class="d-flex flex-column">
                                                 Lilly
+                                                <img src="./assets/images/perfume-violet.png" alt="Lilly Perfume" />
                                             </label>
                                         </div>
-                                        <img src="./assets/images/perfume-violet.png" alt="Lilly Perfume" />
                                     </div>
                                     <div class="fragrance-original">
-                                        <div class="d-flex align-items-center gap-2">
+                                        <div class="d-flex align-items-start gap-2">
                                             <input type="radio" name="fragrances-double-subsc-first"
                                                 id="fragrance-double-subsc-first-rose" class="form-input" />
-                                            <label for="fragrance-double-subsc-first-rose">Rose
+                                            <label for="fragrance-double-subsc-first-rose"
+                                                class="d-flex flex-column">Rose
+                                                <img src="./assets/images/perfume-red.png" alt="Rose Perfume">
                                             </label>
                                         </div>
-                                        <img src="./assets/images/perfume-red.png" alt="Rose Perfume">
                                     </div>
                                 </div>
                                 <h6 class="config-body-title">Choose Fragrance 2</h6>
@@ -276,32 +307,34 @@
                                         <span class="badge badge-best-seller">
                                             BEST-SELLER
                                         </span>
-                                        <div class="d-flex align-items-center gap-2">
+                                        <div class="d-flex align-items-start gap-2">
                                             <input type="radio" name="fragrances-double-subsc-second"
                                                 id="fragrance-double-subsc-second-lavendar" class="form-input" />
-                                            <label for="fragrance-double-subsc-second-lavendar">Original
+                                            <label for="fragrance-double-subsc-second-lavendar"
+                                                class="d-flex flex-column">Original
+                                                <img src="./assets/images/perfume-pink.png" alt="Lavendar Perfume">
                                             </label>
                                         </div>
-                                        <img src="./assets/images/perfume-pink.png" alt="Lavendar Perfume">
                                     </div>
                                     <div class="fragrance-original">
-                                        <div class="d-flex align-items-center gap-2">
-                                            <input type="radio" name="fragrances-double-subsc-second"
+                                        <div class="d-flex align-items-start gap-2">
+                                            <input type="radio" name="fragrances-double-subsc-second" checked
                                                 id="fragrance-double-subsc-second-lilly" class="form-input" />
-                                            <label for="fragrance-double-subsc-second-lilly">
+                                            <label for="fragrance-double-subsc-second-lilly" class="d-flex flex-column">
                                                 Lilly
+                                                <img src="./assets/images/perfume-violet.png" alt="Lilly Perfume" />
                                             </label>
                                         </div>
-                                        <img src="./assets/images/perfume-violet.png" alt="Lilly Perfume" />
                                     </div>
                                     <div class="fragrance-original">
-                                        <div class="d-flex align-items-center gap-2">
+                                        <div class="d-flex align-items-start gap-2">
                                             <input type="radio" name="fragrances-double-subsc-second"
                                                 id="fragrance-double-subsc-second-rose" class="form-input" />
-                                            <label for="fragrance-double-subsc-second-rose">Rose
+                                            <label for="fragrance-double-subsc-second-rose"
+                                                class="d-flex flex-column">Rose
+                                                <img src="./assets/images/perfume-red.png" alt="Rose Perfume">
                                             </label>
                                         </div>
-                                        <img src="./assets/images/perfume-red.png" alt="Rose Perfume">
                                     </div>
                                 </div>
                                 <h6 class="config-body-title">What's included</h6>
@@ -323,7 +356,8 @@
                                     <li><img src="./assets/images/icons/SealCheck.svg" alt="bullet icon"> 1 bottle
                                         shipped monthly</li>
                                     <li><img src="./assets/images/icons/SealCheck.svg" alt="bullet icon">
-                                        <strong>Free</strong>Sampler for original, lily and rose fragrances</li>
+                                        <strong>Free</strong>Sampler for original, lily and rose fragrances
+                                    </li>
                                     <li><img src="./assets/images/icons/SealCheck.svg" alt="bullet icon"> <strong>50%
                                             OFF Shipping</strong></li>
                                     <li><img src="./assets/images/icons/SealCheck.svg" alt="bullet icon"> Pause or
@@ -339,47 +373,53 @@
             </div>
         </section>
 
-        <section class="collection-section container">
-            <div class="filters-column">
-                <h3>Our Collection</h3>
-                <div class="filter-list">
-                    <div class="filter-item">
-                        <div class="filter-item-header">
-                            Fragrance Type <span class="accordion-icon">+</span>
+        <section class="container">
+            <h3>Our Collection</h3>
+            <div class="collection-section">
+                <div class="filters-column">
+                    <div class="filter-list">
+                        <div class="filter-item">
+                            <div class="filter-item-header">
+                                Fragrance Type <span class="accordion-icon">+</span>
+                            </div>
+                            <div class="filter-item-body">
+                                Discover our curated line of signature perfumes, designed to become your daily
+                                companion.
+                            </div>
                         </div>
-                        <div class="filter-item-body">
-                            Discover our curated line of signature perfumes, designed to become your daily companion.
+                        <div class="filter-item">
+                            <div class="filter-item-header">
+                                Signature Type <span class="accordion-icon">+</span>
+                            </div>
+                            <div class="filter-item-body">
+                                Discover our curated line of signature perfumes, designed to become your daily
+                                companion.
+                            </div>
                         </div>
-                    </div>
-                    <div class="filter-item">
-                        <div class="filter-item-header">
-                            Signature Type <span class="accordion-icon">+</span>
+                        <div class="filter-item">
+                            <div class="filter-item-header">
+                                Price Range <span class="accordion-icon">+</span>
+                            </div>
+                            <div class="filter-item-body">
+                                Discover our curated line of signature perfumes, designed to become your daily
+                                companion.
+                            </div>
                         </div>
-                        <div class="filter-item-body">
-                            Discover our curated line of signature perfumes, designed to become your daily companion.
-                        </div>
-                    </div>
-                    <div class="filter-item">
-                        <div class="filter-item-header">
-                            Price Range <span class="accordion-icon">+</span>
-                        </div>
-                        <div class="filter-item-body">
-                            Discover our curated line of signature perfumes, designed to become your daily companion.
-                        </div>
-                    </div>
-                    <div class="filter-item">
-                        <div class="filter-item-header">
-                            Fragrance Type <span class="accordion-icon">+</span>
-                        </div>
-                        <div class="filter-item-body">
-                            Discover our curated line of signature perfumes, designed to become your daily companion.
+                        <div class="filter-item">
+                            <div class="filter-item-header">
+                                Fragrance Type <span class="accordion-icon">+</span>
+                            </div>
+                            <div class="filter-item-body">
+                                Discover our curated line of signature perfumes, designed to become your daily
+                                companion.
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="collection-image-column">
-                <img src="./assets/images/collection-big.webp" alt="A person applying perfume" width="590"
-                    height="710" />
+                <div class="collection-image-column">
+                    <img src="./assets/images/collection-big.webp" alt="A person applying perfume" width="590"
+                        height="710" />
+                </div>
             </div>
         </section>
 
@@ -573,8 +613,9 @@
                             id="subscribe-input" />
                         <button class="btn btn-secondary" type="submit">Subscribe</button>
                     </form>
-                    <p class="fw-light mb-0">By subscribing you agree to with our Privacy Policy and provide consent to
-                        receive updates from our company.</p>
+                    <p class="fw-light mb-0 fs-8">By subscribing you agree to with our Privacy Policy and provide
+                        consent to
+                        receive updates from our company</p>
                 </div>
             </div>
         </div>
