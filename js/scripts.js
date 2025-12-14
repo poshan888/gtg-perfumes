@@ -1,8 +1,47 @@
+// Search Overlay Toggle
+const searchBtn = document.querySelector('.search-btn');
+const searchOverlay = document.getElementById('search-overlay');
+const searchCloseBtn = document.getElementById('search-close');
+const searchInput = document.getElementById('search-input');
+// Open search overlay
+if (searchBtn && searchOverlay) {
+    searchBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        searchOverlay.classList.add('active');
+// Focus on input after animation starts        
+setTimeout(() => {
+    searchInput?.focus();
+}, 100);
+});
+}
+// Close search overlay
+if (searchCloseBtn && searchOverlay) {
+    searchCloseBtn.addEventListener('click', () => {
+        searchOverlay.classList.remove('active');
+        searchInput?.blur();
+    });
+}
+// Close on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && searchOverlay?.classList.contains('active')){
+        searchOverlay.classList.remove('active');
+        searchInput?.blur();
+    }});
+// Close on overlay background click
+if (searchOverlay) {
+    searchOverlay.addEventListener('click', (e) => {
+        if (e.target === searchOverlay) {
+            searchOverlay.classList.remove('active');
+            searchInput?.blur();
+        }
+    });
+}
+
 // Make header fixed and change bg-color
 const navbar = document.getElementById('navbar');
 
 // Listen for the scroll event on the window
-window.onscroll = function() {
+window.onscroll = function () {
     // Check if the user has scrolled down a certain amount (e.g., 100px)
     if (document.body.scrollTop >= 100 || document.documentElement.scrollTop >= 100) {
         navbar.classList.add('scrolled'); // Add the 'scrolled' class
@@ -32,11 +71,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mainProductImage && imageSources.length > 0) {
         // Use a generic placeholder if the initial image source is needed
         // mainProductImage.src = imageSources[0]; // If the main image is not already set in HTML
-        
+
         thumbnails.forEach((thumb, index) => {
             // For a complete implementation, you would load the small thumbnail image here:
             // thumb.style.backgroundImage = `url('${imageSources[index]}')`; 
-            
+
             thumb.addEventListener('click', () => {
                 // Update the main image source
                 mainProductImage.src = imageSources[index];
@@ -54,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     filterItems.forEach(item => {
         item.addEventListener('click', () => {
             const isCurrentlyOpen = item.classList.contains('open');
-            
+
             // Close all filter items first
             filterItems.forEach(otherItem => {
                 otherItem.classList.remove('open');
@@ -63,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     otherToggleSpan.textContent = '+';
                 }
             });
-            
+
             // If the clicked item wasn't open, open it now
             if (!isCurrentlyOpen) {
                 item.classList.add('open');
@@ -81,12 +120,12 @@ document.addEventListener('DOMContentLoaded', () => {
     ctaButtons.forEach(button => {
         button.addEventListener('click', (event) => {
             // Prevent form submission if applicable (though these are simple buttons)
-            event.preventDefault(); 
-            
+            event.preventDefault();
+
             const buttonText = button.textContent;
         });
     });
-    
+
     // 4. Newsletter Form Submission (Prevent Default)
     const newsletterForm = document.querySelector('.footer-newsletter form');
     if (newsletterForm) {
@@ -94,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault(); // Stop the page from reloading
             const emailInput = newsletterForm.querySelector('input[type="email"]').value;
             console.log(`Newsletter subscription attempt with email: ${emailInput}`);
-            
+
             // In a real application, send this data to your server
             alert(`Thank you for subscribing, ${emailInput}!`);
             newsletterForm.reset();
@@ -107,21 +146,21 @@ let arr = Array.from(count)
 
 
 
-arr.map(function(item){
-  let startnumber = 0
+arr.map(function (item) {
+    let startnumber = 0
 
-  function counterup(){
-  startnumber++
-  item.innerHTML= startnumber + "%"
-   
-  if(startnumber == item.dataset.number){
-      clearInterval(stop)
-  }
-}
+    function counterup() {
+        startnumber++
+        item.innerHTML = startnumber + "%"
 
-let stop =setInterval(function(){
-  counterup()
-},50)
+        if (startnumber == item.dataset.number) {
+            clearInterval(stop)
+        }
+    }
+
+    let stop = setInterval(function () {
+        counterup()
+    }, 50)
 
 })
 
@@ -161,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentBox) {
             currentBox.classList.add('active');
         }
-        
+
         // 3. Ensure the radio button is marked as checked (important if triggered by header click)
         activeRadio.checked = true;
     }
@@ -172,13 +211,13 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleSubscriptionBox(event.target);
         });
     });
-    
+
     // --- B. Handle Header Click Event (User Convenience) ---
     headers.forEach(header => {
         header.addEventListener('click', (event) => {
             // Find the radio button inside the clicked header
             const radio = header.querySelector('.btn-radio-subsc');
-            
+
             if (radio) {
                 // Manually check the radio button and trigger the toggle function
                 if (!radio.checked) {
@@ -208,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const grid = document.getElementById('thumbnail-grid');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
-    
+
     // Determine how much to scroll on each click. 
     // Using the width of a single thumb + gap is a good default.
     const scrollAmount = 90; // (80px thumb width + 10px gap)
@@ -241,12 +280,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const thumbs = document.querySelectorAll('.thumb');
 
     thumbs.forEach(thumb => {
-        thumb.addEventListener('click', function() {
+        thumb.addEventListener('click', function () {
             // Remove 'active' class from all thumbs
             thumbs.forEach(t => t.classList.remove('active'));
             // Add 'active' class to the clicked thumb
             this.classList.add('active');
-            
+
             // NOTE: If this gallery controls a main, larger image, 
             // you would add the logic here to update the main image source.
         });
